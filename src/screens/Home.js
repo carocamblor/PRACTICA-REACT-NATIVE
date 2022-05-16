@@ -3,7 +3,6 @@ import {Image, View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, Flat
 import Contador from '../components/Contador';
 import Card from '../components/Card';
 
-
 class Home extends Component {
 
     constructor(props){

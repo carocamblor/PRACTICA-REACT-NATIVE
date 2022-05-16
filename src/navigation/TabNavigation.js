@@ -2,15 +2,13 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Home from '../screens/Home';
-import Register from '../screens/Register'
-import Login from '../screens/Login';
+import Profile from '../screens/Profile';
 import { AntDesign } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator()
 
-function TabNavigation() {
+function TabNavigation(props) {
   return (
-      <NavigationContainer>
           <Tab.Navigator screenOptions={{ tabBarShowLabel: false }}>
               <Tab.Screen
                 name='Home'
@@ -20,21 +18,14 @@ function TabNavigation() {
                 }}
                 />
               <Tab.Screen
-                name='Register'
-                component={Register}
+                name='Profile'
+                component={Profile}
                 options={{
-                    tabBarIcon: () => <AntDesign name="adduser" size={24} color="black" />
+                    tabBarIcon: () => <AntDesign name="user" size={24} color="black" />
                 }}
+                initialParams={{logout: () => props.route.params.logout()}}
                 />
-              <Tab.Screen
-                name='Login'
-                component={Login}
-                options={{
-                    tabBarIcon: () => <AntDesign name="login" size={24} color="black" />
-                }}
-              />
           </Tab.Navigator>
-      </NavigationContainer>
   );
 }
 

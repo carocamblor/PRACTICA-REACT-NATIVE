@@ -9,7 +9,7 @@ class Login extends Component {
         this.state = {
             email: '',
             password: '',
-            loggedIn: false
+            // loggedIn: false
         }
     }
 
@@ -17,16 +17,16 @@ class Login extends Component {
         console.log(this.state)
     }
 
-    login(email, pass){
-        auth.signInWithEmailAndPassword(email, pass)
-            .then((response) => {
-                this.setState({loggedIn: true}, () => console.log(this.state.loggedIn));
-            })
-            .catch(error => {
-                this.setState({error: 'Credenciales inválidas'})
-                console.log(error)
-            })
-    }
+    // login(email, pass){
+    //     auth.signInWithEmailAndPassword(email, pass)
+    //         .then((response) => {
+    //             this.setState({loggedIn: true}, () => console.log(this.state.loggedIn));
+    //         })
+    //         .catch(error => {
+    //             this.setState({error: 'Credenciales inválidas'})
+    //             console.log(error)
+    //         })
+    // }
 
     render() {
         return (
@@ -43,9 +43,18 @@ class Login extends Component {
                     placeholder='Password'
                     secureTextEntry={true}
                     onChangeText={ text => this.setState({password:text})}/>
-                <TouchableOpacity style={styles.button} onPress={() => this.login(this.state.email, this.state.password)}>
+                <TouchableOpacity style={styles.button} onPress={() => this.props.route.params.login(this.state.email, this.state.password)}>
                     <Text>Login</Text>
                 </TouchableOpacity>
+                <View>
+                    {this.props.route.params.loginError ? <Text>EL ERROR ES: {this.props.route.params.loginError}</Text> : <Text>NO HAY ERROR</Text>}
+                </View>
+                <View>
+                    <Text>¿Todavía no tenes una cuenta?</Text>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('register')}>
+                        <Text>Registrate acá</Text>
+                    </TouchableOpacity>
+                </View>
                 <View>
                     <Text>Datos ingresados:</Text>
                     <Text>Email: {this.state.email}</Text>
