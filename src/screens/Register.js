@@ -11,7 +11,6 @@ class Home extends Component {
             email: '',
             username: '',
             password: '',
-            registered: false,
             error: ''
         }
     }
@@ -19,17 +18,6 @@ class Home extends Component {
     onSubmit(){
         console.log(this.state)
     }
-
-    // register(email, pass){
-    //     auth.createUserWithEmailAndPassword(email, pass)
-    //         .then((response) => {
-    //             this.setState({registered: true}, ()=> console.log(this.state.registered));
-    //         })
-    //         .catch(error => {
-    //             this.setState({error: 'Fallo en el registro'})
-    //             console.log(error)
-    //         })
-    // }
 
     render() {
         return (
@@ -51,11 +39,11 @@ class Home extends Component {
                     placeholder='Password'
                     secureTextEntry={true}
                     onChangeText={ text => this.setState({password:text})}/>
-                <TouchableOpacity style={styles.button} onPress={() => this.props.route.params.register(this.state.email, this.state.password)}>
+                <TouchableOpacity style={styles.button} onPress={() => this.props.register(this.state.email, this.state.password)}>
                     <Text>Registrate</Text>
                 </TouchableOpacity>
                 <View>
-                    {this.props.route.params.registerError ? <Text>{this.props.route.params.registerError}</Text> : <Text></Text>}
+                    {this.props.registerError ? <Text>EL ERROR ES: {this.props.registerError}</Text> : <Text>NO HAY ERROR</Text>}
                 </View>
                 <View>
                     <Text>Datos ingresados:</Text>

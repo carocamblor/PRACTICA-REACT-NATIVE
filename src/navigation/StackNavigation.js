@@ -15,7 +15,7 @@ class StackNavigation extends Component {
         this.state = {
             loggedIn: false,
             loginError: '',
-            registerError: ''
+            registerError: '',
         }
     }
 
@@ -31,8 +31,9 @@ class StackNavigation extends Component {
                 this.setState({loggedIn: true}, ()=> console.log(this.state.registered));
             })
             .catch(error => {
-                console.log(error)
-                this.setState({registerError: error})
+                let message = error.message
+                console.log(message)
+                this.setState({registerError: message})
             })
     }
 
@@ -42,8 +43,9 @@ class StackNavigation extends Component {
                 this.setState({loggedIn: true}, () => console.log(this.state.loggedIn));
             })
             .catch(error => {
-                console.log(error)
-                this.setState({loginError: error})
+                let message = error.message
+                console.log(message)
+                this.setState({loginError: message})
             })
     }
 
@@ -54,6 +56,7 @@ class StackNavigation extends Component {
     }
 
     render(){
+        console.log('se rendenderiza STACK')
         return(
             <NavigationContainer>
                 <Stack.Navigator>
@@ -69,12 +72,14 @@ class StackNavigation extends Component {
                         <Stack.Screen
                             name='login'
                             component={ Login }
+                            // children={() => <Login login={(mail, pass) => this.login(mail, pass)} loginError={this.state.loginError}/>}
                             initialParams={ { login: (mail, pass) => this.login(mail, pass), loginError: this.state.loginError } }
                         />
                         <Stack.Screen
                             name='register'
-                            component={ Register }
-                            initialParams={ { register: (mail, pass) => this.register(mail, pass), registerError: this.state.registerError } }
+                            // component={ Register }
+                            children={() => <Register register={(mail, pass) => this.register(mail, pass)} registerError={this.state.registerError}/>}
+                            // initialParams={ { register: (mail, pass) => this.register(mail, pass), registerError: this.state.registerError } }
                         />
                     </Stack.Group>
                     }

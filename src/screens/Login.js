@@ -9,7 +9,6 @@ class Login extends Component {
         this.state = {
             email: '',
             password: '',
-            // loggedIn: false
         }
     }
 
@@ -17,18 +16,9 @@ class Login extends Component {
         console.log(this.state)
     }
 
-    // login(email, pass){
-    //     auth.signInWithEmailAndPassword(email, pass)
-    //         .then((response) => {
-    //             this.setState({loggedIn: true}, () => console.log(this.state.loggedIn));
-    //         })
-    //         .catch(error => {
-    //             this.setState({error: 'Credenciales inválidas'})
-    //             console.log(error)
-    //         })
-    // }
-
     render() {
+        console.log('se rendenderiza STACK')
+        console.log(this.props.route)
         return (
             <View style={styles.container}>
                 <Text>Login</Text>
