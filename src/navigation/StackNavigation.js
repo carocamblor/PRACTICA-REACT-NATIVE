@@ -20,6 +20,9 @@ class StackNavigation extends Component {
     }
 
     componentDidMount(){
+        // if(auth.currentUser) {
+        //     this.setState({loggedIn: true})
+        // }
         auth.onAuthStateChanged( user => {
            this.setState({loggedIn: user})
         })
