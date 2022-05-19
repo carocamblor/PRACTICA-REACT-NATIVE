@@ -74,9 +74,9 @@ class StackNavigation extends Component {
                     <Stack.Group>
                         <Stack.Screen
                             name='login'
-                            // component={ Login }
-                            children={() => <Login login={(mail, pass) => this.login(mail, pass)} loginError={this.state.loginError} />}
-                            // initialParams={ { login: (mail, pass) => this.login(mail, pass), loginError: this.state.loginError } }
+                            component={ Login }
+                            // children={() => <Login login={(mail, pass) => this.login(mail, pass)} loginError={this.state.loginError} />}
+                            initialParams={ { login: (mail, pass) => this.login(mail, pass), loginError: this.state.loginError } }
                         />
                         <Stack.Screen
                             name='register'
