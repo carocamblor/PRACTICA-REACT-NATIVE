@@ -20,6 +20,7 @@ class Home extends Component {
     }
 
     render() {
+        console.log(this.props)
         return (
             <View style={styles.container}>
                 <Text>Register</Text>
@@ -39,11 +40,17 @@ class Home extends Component {
                     placeholder='Password'
                     secureTextEntry={true}
                     onChangeText={ text => this.setState({password:text})}/>
-                <TouchableOpacity style={styles.button} onPress={() => this.props.register(this.state.email, this.state.password)}>
+                <TouchableOpacity style={styles.button} onPress={() => this.props.register(this.state.email, this.state.password, this.state.username)}>
                     <Text>Registrate</Text>
                 </TouchableOpacity>
                 <View>
                     {this.props.registerError ? <Text>EL ERROR ES: {this.props.registerError}</Text> : <Text>NO HAY ERROR</Text>}
+                </View>
+                <View>
+                    <Text>¿Ya tenes una cuenta?</Text>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('login')}>
+                        <Text>Iniciar sesión</Text>
+                    </TouchableOpacity>
                 </View>
                 <View>
                     <Text>Datos ingresados:</Text>

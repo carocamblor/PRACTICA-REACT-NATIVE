@@ -18,7 +18,7 @@ class Login extends Component {
     }
 
     componentDidMount(){
-        console.log('componentdidmount' + this.props.route.params.loginError)
+        console.log('componentdidmount' + this.props)
 
     }
 
@@ -39,11 +39,11 @@ class Login extends Component {
                     placeholder='Password'
                     secureTextEntry={true}
                     onChangeText={ text => this.setState({password:text})}/>
-                <TouchableOpacity style={styles.button} onPress={() => this.props.route.params.login(this.state.email, this.state.password)}>
+                <TouchableOpacity style={styles.button} onPress={() => this.props.login(this.state.email, this.state.password)}>
                     <Text>Login</Text>
                 </TouchableOpacity>
                 <View>
-                    {this.props.route.params.loginError ? <Text>EL ERROR ES: {this.props.route.params.loginError}</Text> : <Text>NO HAY ERROR</Text>}
+                    {this.props.loginError ? <Text>EL ERROR ES: {this.props.loginError}</Text> : <Text>NO HAY ERROR</Text>}
                 </View>
                 <View>
                     <Text>¿Todavía no tenes una cuenta?</Text>

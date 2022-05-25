@@ -1,26 +1,35 @@
 import React, { Component } from 'react';
 import {Image, View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, FlatList} from 'react-native';
 import Contador from '../components/Contador';
-import Card from '../components/Card';
+import Post from '../components/Post';
+import { db, auth } from "../firebase/config";
 
 class Home extends Component {
 
     constructor(props){
         super(props)
         this.state = {
-            num: 0,
             data: [],
             loader: true
         }
     }
 
     componentDidMount() {
-        fetch('https://rickandmortyapi.com/api/character')
-            .then(response => response.json())
-            .then(data => this.setState({
-                data: data.results,
-                loader: false
-            }))
+        db.collection('posts').onSnapshot(
+            docs => {
+                let posts = [];
+                docs.forEach(doc => {
+                    posts.push({
+                        id: doc.id,
+                        data: doc.data()
+                    })
+                })
+                this.setState({
+                    data: posts,
+                    loader: false
+                }, () => console.log(this.state.data))
+            }
+        )
     }
 
     click() {
@@ -58,7 +67,7 @@ class Home extends Component {
                 <FlatList
                     data={this.state.data}
                     keyExtractor={ item => item.id.toString()}
-                    renderItem={({item}) => <Card data={item} /> }
+                    renderItem={({item}) => <Post data={item.data} /> }
                     
                     />
                 }
